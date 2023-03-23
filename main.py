@@ -1,3 +1,4 @@
+import time
 import googlemaps
 from datetime import datetime
 import itertools
@@ -43,11 +44,16 @@ for i in range(len(shortestRoute)):
     print(shortestRoute[i])
     if i != len(shortestRoute) - 1:
         print("to")
-print("The total duration is " + str(int(shortestDuration/60)) + " minutes.")
+# Round the duration to the nearest minute
+print("The total duration is " + str(round(shortestDuration/60)) + " minutes.")
 
 # Print the link to the Google Maps directions
 print("Opening the link to the Google Maps directions...")
-gmapsUrl = "https://www.google.com/maps/dir/?api=1&origin=" + start + "&destination=" + start + "&travelmode=driving&waypoints=" + "|".join(addresses)
+# Timeout for 2 seconds
+time.sleep(2)
+# Create a google Maps URL for the shortest route in the shorestRoute list. The start address is the variable start,
+# and the destination address is the last address in the shortestRoute list
+gmapsUrl = "https://www.google.com/maps/dir/?api=1&origin=" + start + "&destination=" + shortestRoute[-1] + "&travelmode=driving" + "&waypoints=" + "|".join(shortestRoute[1:-1])
 webbrowser.open(gmapsUrl)
 
 
