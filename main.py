@@ -19,6 +19,7 @@ for i in range(numAddresses):
     # Find the shortest duration between all the addresses in addresses starting from start
     # Create a list of all possible permutations of the addresses
 permutations = list(itertools.permutations(addresses))
+print("\nCalculating the shortest route...  Please be patient.\n")
 # Create a list of all possible routes
 routes = []
 for permutation in permutations:
@@ -45,13 +46,13 @@ for i in range(len(shortestRoute)):
     if i != len(shortestRoute) - 1:
         print("to")
 # Round the duration to the nearest minute
-print("The total duration is " + str(round(shortestDuration/60)) + " minutes.")
+print("\nThe total duration is " + str(round(shortestDuration/60)) + " minutes.\n")
 
 # Print the link to the Google Maps directions
 print("Opening the link to the Google Maps directions...")
-# Timeout for 2 seconds
-time.sleep(2)
-# Create a google Maps URL for the shortest route in the shorestRoute list. The start address is the variable start,
+# Timeout for 1 second
+time.sleep(1.25)
+# Create a Google Maps URL for the shortest route in the shortestRoute list. The start address is the variable start,
 # and the destination address is the last address in the shortestRoute list
 gmapsUrl = "https://www.google.com/maps/dir/?api=1&origin=" + start + "&destination=" + shortestRoute[-1] + "&travelmode=driving" + "&waypoints=" + "|".join(shortestRoute[1:-1])
 webbrowser.open(gmapsUrl)
